@@ -1,21 +1,28 @@
-import { fetchPrivateServer } from "@/lib/fetchPrivate";
+
+import { fetchPrivateServer } from "@/lib/fetchPrivateServer";
 import { Question as QuestionComponent } from "./(component)/Question";
 import { Question } from "@/types/Question";
 
-export default async function Page() {
-    const id = "123";
-    const question = await fetchPrivateServer<Question>(`question/${id}`, {
+interface QuestaoPageProps {
+    params: {
+        id: string;
+    }
+}
+
+export default async function Page({ params }: QuestaoPageProps) {
+
+    const question = await fetchPrivateServer<Question>(`question/${params.id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 } // 30 dias
     });
-
+    
     return (
         <div className="flex max-w-[800px] flex-col mx-auto mt-[48px] gap-[24px] px-[16px]">
-            <QuestionComponent question={question} />
             <div className="self-stretch p-4 bg-sidebar-background rounded-lg inline-flex flex-col justify-center items-start gap-1">
-                <h3 className=" text-muted-foreground text-xs leading-none">Bloco 1 - Seguridade social: saúde, assistência social e previdência social</h3>
-                <div className="text-muted-foreground text-xs font-bold leading-3">Direito do Trabalho / Direitos constitucionais dos trabalhadores e das trabalhadoras</div>
+                <h3 className=" text-muted-foreground text-xs leading-none">Bloco {question.topic.block.number} - {question.topic.block.name}</h3>
+                <div className="text-muted-foreground text-xs font-bold leading-3">{question.topic.name} {question?.subtopic.name ? `- ${question?.subtopic.name}` : ''}</div>
             </div>
 
+            <QuestionComponent question={question} />
         </div>
     )
 }

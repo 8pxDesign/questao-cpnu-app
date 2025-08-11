@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { fetchPrivateServer } from "@/lib/fetchPrivate";
+import { fetchPrivateServer } from "@/lib/fetchPrivateServer";
 import { Block } from "@/types/Block";
 import { PaginateResponse } from "@/types/Paginate";
+import Link from "next/link";
 
 export default async function EscolhaBloco() {
 
@@ -16,15 +17,17 @@ export default async function EscolhaBloco() {
         </header>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full ">
         {blocks.data.map((block) => (
-          <Card key={block.id} className="bg-white">
-            <CardContent className=" justify-between gap-[6px] flex ">
-              <div className="flex flex-col gap-[6px] flex-1">
-                <p className="text-muted-foreground text-xs font-bold">Bloco {block.number}</p>
-                <p className="text-base-foreground text-xs font-bold leading-none capitalize">{block.name}</p>
-              </div>
-              <img src={`images/icons-blue/${block.id}.svg`} alt="" width={40} />
-            </CardContent>
-          </Card>
+          <Link href={`/bloco/${block.id}`} key={block.id} className="w-full">
+            <Card key={block.id} className="bg-white">
+              <CardContent className=" justify-between gap-[6px] flex ">
+                <div className="flex flex-col gap-[6px] flex-1">
+                  <p className="text-muted-foreground text-xs font-bold">Bloco {block.number}</p>
+                  <p className="text-base-foreground text-xs font-bold leading-none capitalize">{block.name}</p>
+                </div>
+                <img src={`images/icons-blue/${block.id}.svg`} alt="" width={40} />
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
       </div>

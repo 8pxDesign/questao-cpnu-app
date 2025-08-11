@@ -67,10 +67,10 @@ export const ChoiceSubTopics = ({ topics }: ChoiceTopicProps) => {
                                 <span className="text-base-muted-foreground text-sm font-bold leading-tight">{topic.name}</span>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-4">
                                     {topic.subtopics.map(subTopic => (
-                                        <Card key={subTopic.id}>
+                                        <Card key={subTopic.id} className="cursor-pointer">
                                             <CardContent>
                                                 <CardTitle className="flex items-center justify-between">
-                                                    <h3 className="font-normal capitalize">{subTopic.name}</h3>
+                                                    <h3 className="flex items-center justify-between text-[12px] leading-[16px]">{subTopic.name}</h3>
                                                     <CardAction>
                                                         <ChevronRight />
                                                     </CardAction>

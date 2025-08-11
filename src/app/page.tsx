@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { fetchPrivateServer } from "@/lib/fetchPrivate";
+import { fetchPublicServer } from "@/lib/fetchPublic";
 import { Block } from "@/types/Block";
 import { PaginateResponse } from "@/types/Paginate";
+import Link from "next/link";
 export default async function Home() {
 
-  const blocks = await fetchPrivateServer<PaginateResponse<Block>>('blocks');
+  const blocks = await fetchPublicServer<PaginateResponse<Block>>('blocks');
   
   return (
     <div className="flex max-w-[800px] flex-col mx-auto mt-[48px] gap-[24px] px-[16px]">
@@ -27,7 +28,9 @@ export default async function Home() {
           </Card>
         ))}
       </div>
-      <Button variant={'default'}>Quero testar meus conhecimentos</Button>
+      <Link href="/escolha-bloco" className="w-full">
+        <Button variant={'default'} className="w-full">Quero testar meus conhecimentos</Button>
+      </Link>
     </div>
   );
 }

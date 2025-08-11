@@ -5,8 +5,7 @@ export const fetchPrivateServer = async <T>(url: string, options: RequestInit = 
   const { userId, getToken } = await auth()
 
   const token = userId ? await getToken({template: 'questoes_cpnu'}) : null;
-  
-  const response = await fetch(`${process.env.NEXT_API_URL}${url}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',

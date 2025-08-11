@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { BlocoPageProps } from "./page.typs";
-import { fetchPrivateServer } from "@/lib/fetchPrivate";
+import { fetchPrivateServer } from "@/lib/fetchPrivateServer";
 import { Block } from "@/types/Block";
 import { Card, CardAction, CardContent, CardTitle } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
@@ -9,18 +9,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChoiceTopics } from "./(components)/ChoiceTopic";
 import { Topic } from "@/types/Topic";
 import { ChoiceSubTopics } from "./(components)/ChoiceSubTopic";
+import { fetchPublicServer } from "@/lib/fetchPublic";
 
 
 export default async function BlocoPage({ params }: BlocoPageProps) {
     const resolvedParams = await params;
     const { id } = resolvedParams;
 
-    const bloco = await fetchPrivateServer<Block>(`blocks/${id}`, {
+    const bloco = await fetchPublicServer<Block>(`blocks/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
-    const topics = await fetchPrivateServer<Topic[]>(`topic/by-block/${id}`, {
+
+    const topics = await fetchPublicServer<Topic[]>(`topic/by-block/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
-    })
+    });
+
+    const handleDrawQuestions = async (topicId: string) => {
+        const response = await fetchPrivateServer(`/question/draw/${topicId}`, {
+            method: 'POST',
+            next: { revalidate: 60 * 60 * 24 * 30 }
+        });
+    }
 
     return <>
         <div className="border-b-1">

@@ -3,13 +3,17 @@
 import { ChevronRight, SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Card, CardAction, CardContent, CardTitle } from "@/components/ui/card";
-import { Topic } from "@/types/Topic";
 import { ChoiceTopicProps } from "./index.type";
-
 import React from "react";
+import { usePrivateFetch } from "@/lib/fetchPrivateClient";
+import { Question } from "@/types/Question";
+import { useRouter } from 'next/navigation'
+
 
 export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
     const [search, setSearch] = React.useState("");
+    const fetchPrivate = usePrivateFetch();
+    const {push} = useRouter();
 
     function normalizeText(text: string) {
         return text
@@ -24,6 +28,17 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
             normalizeText(topic.name).includes(normalizedSearch)
         );
     }, [topics, search]);
+
+
+    const handleDrawQuestions = async (topicId: number) => {
+        const response = await fetchPrivate<Question>(`question/draw-by-topic/${topicId}`, {
+            method: 'GET',
+            next: { revalidate: 60 * 60 * 24 * 30 }
+        });
+
+        push(`/questao/${response.id}`);
+        
+    }
 
     return <div className="flex flex-col gap-[1rem] w-full">
         <div className="grid w-full items-center gap-1.5">
@@ -44,10 +59,10 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
             {filteredTopics.map((topic) => {
-                return <Card key={topic.id}>
+                return <Card key={topic.id} onClick={() => handleDrawQuestions(topic.id)} className="bg-white cursor-pointer">
                     <CardContent>
                         <CardTitle className="flex items-center justify-between">
-                            <h3 className="font-normal capitalize">{topic.name}</h3>
+                            <h3 className="flex items-center justify-between text-[12px] leading-[16px]">{topic.name}</h3>
                             <CardAction>
                                 <ChevronRight />
                             </CardAction>
