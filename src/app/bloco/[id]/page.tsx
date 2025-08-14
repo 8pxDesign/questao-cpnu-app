@@ -42,7 +42,7 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
                     <TabsTrigger value={'eixos'}>Eixos</TabsTrigger>
                     <Tooltip >
                         <TooltipTrigger className="flex-1">
-                            <TabsTrigger value={'temas'} disabled={true}> (Em Breve)</TabsTrigger>
+                            <TabsTrigger value={'temas'} disabled={true}> Temas (Em Breve)</TabsTrigger>
                         </TooltipTrigger>
                         <TooltipContent>
                             <p>Em Breve</p>
