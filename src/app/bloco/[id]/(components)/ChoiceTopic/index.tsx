@@ -31,7 +31,7 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
 
 
     const handleDrawQuestions = async (topicId: number) => {
-        const response = await fetchPrivate<Question>(`question/draw-by-topic/${topicId}`, {
+        const response = await fetchPrivate<Question>(`question/draw/topic/${topicId}`, {
             method: 'GET',
             next: { revalidate: 60 * 60 * 24 * 30 }
         });

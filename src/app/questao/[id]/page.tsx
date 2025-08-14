@@ -12,7 +12,7 @@ interface QuestaoPageProps {
 export default async function Page({ params }: QuestaoPageProps) {
 
     const question = await fetchPrivateServer<Question>(`question/${params.id}`, {
-        next: { revalidate: 60 * 60 * 24 * 30 } // 30 dias
+        next: { revalidate: 60 * 60 * 24 * 30 }
     });
     
     return (
@@ -21,7 +21,6 @@ export default async function Page({ params }: QuestaoPageProps) {
                 <h3 className=" text-muted-foreground text-xs leading-none">Bloco {question.topic.block.number} - {question.topic.block.name}</h3>
                 <div className="text-muted-foreground text-xs font-bold leading-3">{question.topic.name} {question?.subtopic.name ? `- ${question?.subtopic.name}` : ''}</div>
             </div>
-
             <QuestionComponent question={question} />
         </div>
     )

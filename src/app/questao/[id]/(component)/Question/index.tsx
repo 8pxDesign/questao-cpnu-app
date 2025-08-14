@@ -21,16 +21,17 @@ export const Question = ({ question }: QuestionProps) => {
 
         if (alternativeSelected) return;
 
+        setAlternativeSelected(alternative);
+
         await fetchPrivateClient(`question/answer/`, {
             method: 'POST',
             body: JSON.stringify({ alternativeId: alternative.id, questionId: question.id }),
         });
-        setAlternativeSelected(alternative);
     }
 
     const continuarHandle = async () => {
         if (!alternativeSelected) return;
-        const newQuestion = await fetchPrivateClient<{ id: number }>(`question/draw-by-topic/${question.topicId}`);
+        const newQuestion = await fetchPrivateClient<{ id: number }>(`question/draw/topic/${question.topicId}`);
         router.replace(`/questao/${newQuestion.id}`);
     }
 

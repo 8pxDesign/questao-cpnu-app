@@ -6,7 +6,6 @@ import { Card, CardAction, CardContent, CardTitle } from "@/components/ui/card";
 import { ChoiceTopicProps } from "./index.type";
 
 import React from "react";
-import { fetchPrivateServer } from "@/lib/fetchPrivateServer";
 import { useRouter } from 'next/navigation'
 import { usePrivateFetch } from "@/lib/fetchPrivateClient";
 
@@ -25,7 +24,7 @@ export const ChoiceSubTopics = ({ topics }: ChoiceTopicProps) => {
     }
 
     const handleDrawQuestions = async (topicId: number) => {
-        const response = await fetchPrivate<{ id: number }>(`question/draw-by-topic/${topicId}`, {
+        const response = await fetchPrivate<{ id: number }>(`question/draw/topic/${topicId}`, {
             method: 'GET',
             next: { revalidate: 60 * 60 * 24 * 30 }
         });

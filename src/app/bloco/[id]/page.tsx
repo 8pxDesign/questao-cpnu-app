@@ -24,13 +24,6 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
 
-    const handleDrawQuestions = async (topicId: string) => {
-        const response = await fetchPrivateServer(`/question/draw/${topicId}`, {
-            method: 'POST',
-            next: { revalidate: 60 * 60 * 24 * 30 }
-        });
-    }
-
     return <>
         <div className="border-b-1">
             <div className="flex justify-between flex-col items-start p-4 gap-1 max-w-[1280px] mx-auto">
