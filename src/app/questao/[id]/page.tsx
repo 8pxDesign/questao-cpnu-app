@@ -23,7 +23,7 @@ export default async function Page({ params }: QuestaoPageProps) {
                 <div className="text-muted-foreground text-xs font-bold leading-3">{question.topic.name} {question?.subtopic.name ? `- ${question?.subtopic.name}` : ''}</div>
             </div>
             <Link href={'/escolha-bloco'}>
-                <X />
+                <X className="text-[1rem]" />
             </Link>
             <QuestionComponent question={question} />
         </div>
