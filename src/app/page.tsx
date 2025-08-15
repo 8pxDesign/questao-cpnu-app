@@ -17,16 +17,18 @@ export default async function Home() {
           <p className="text-muted-foreground text-sm font-medium font-['Rawline'] leading-tight">Responda questões específicas dos temas e eixos do seu bloco do CPNU e pratique seu conhecimento diariamente com questões inéditas de acordo com a banca FVG</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-        {blocks.data.map((block) => (
-          <Card key={block.id} className="bg-sidebar-background">
-            <CardContent className="flex-col gap-[6px] flex">
-              <img src={`images/icons/${block.id}.svg`} alt="" width={40} />
-              <p className="text-muted-foreground text-xs font-bold font-['Rawline']">Bloco {block.number}</p>
-              <p className="text-foreground text-xs font-bold font-['Rawline'] leading-none capitalize">{block.name}</p>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="w-full overflow-x-auto">
+        <div className="flex gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3">
+          {blocks.data.map((block) => (
+        <Card key={block.id} className="bg-sidebar-background min-w-[220px] sm:min-w-0">
+          <CardContent className="flex-col gap-[6px] flex">
+            <img src={`images/icons/${block.id}.svg`} alt="" width={40} />
+            <p className="text-muted-foreground text-xs font-bold font-['Rawline']">Bloco {block.number}</p>
+            <p className="text-foreground text-xs font-bold font-['Rawline'] leading-none capitalize">{block.name}</p>
+          </CardContent>
+        </Card>
+          ))}
+        </div>
       </div>
       <Link href="/escolha-bloco" className="w-full">
         <Button variant={'default'} className="w-full">Quero testar meus conhecimentos</Button>
