@@ -1,6 +1,8 @@
 import { fetchPrivateServer } from "@/lib/fetchPrivateServer";
 import { Question as QuestionComponent } from "./(component)/Question";
 import { Question } from "@/types/Question";
+import { X } from "lucide-react";
+import Link from "next/link";
 
 interface QuestaoPageProps {
     params: Promise<{
@@ -20,6 +22,9 @@ export default async function Page({ params }: QuestaoPageProps) {
                 <h3 className=" text-muted-foreground text-xs leading-none">Bloco {question.topic.block.number} - {question.topic.block.name}</h3>
                 <div className="text-muted-foreground text-xs font-bold leading-3">{question.topic.name} {question?.subtopic.name ? `- ${question?.subtopic.name}` : ''}</div>
             </div>
+            <Link href={'/escolha-bloco'}>
+                <X />
+            </Link>
             <QuestionComponent question={question} />
         </div>
     )
