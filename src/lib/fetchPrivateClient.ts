@@ -11,7 +11,7 @@ export function usePrivateFetch() {
     options: RequestInit = {}
   ): Promise<T> {
     if (!isLoaded || !isSignedIn) {
-      redirect("/login");
+      redirect("/sigin-in");
     }
 
     const token = await getToken({ template: "questoes_cpnu" });
