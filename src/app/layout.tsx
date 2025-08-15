@@ -51,13 +51,13 @@ export default function RootLayout({
           <meta content="Questões CPNU - Prepare-se para o sucesso no seu próximo exame" property="og:title" />
           <meta content="Personalize seus simulados e obtenha feedback instantâneo para melhorar seus resultados."
             property="og:description" />
-          <meta content="capa.png" property="og:image" />
+          <meta content="/capa.png" property="og:image" />
           <meta content="https://questoes.cpnu.com.br" property="og:url" />
-          <meta content="capa.png" name="twitter:card" />
+          <meta content="/capa.png" name="twitter:card" />
           <meta content="@luigi_flu" name="twitter:site" />
           <meta content="Personalize seus simulados e obtenha feedback instantâneo para melhorar seus resultados."
             name="twitter:description" />
-          <meta content="favicon-32x32.png" name="twitter:image" />
+          <meta content="/favicon-32x32.png" name="twitter:image" />
           <meta content="website" property="og:type" />
           <meta content="pt_BR" property="og:locale" />
           <meta content="1200" property="og:image:width" />
