@@ -39,18 +39,6 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <Head>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=G-KC1CFFB8FS`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-KC1CFFB8FS');
-            `}
-          </Script>
           <title>Questões CPNU</title>
           <base href="/" />
           <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -101,6 +89,18 @@ export default function RootLayout({
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {isShowHeader && <Header />}
           {children}
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=G-KC1CFFB8FS`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KC1CFFB8FS');
+            `}
+          </Script>
         </body>
       </html>
     </ClerkProvider>
