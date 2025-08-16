@@ -7,6 +7,8 @@ import './globals.css'
 import { Header } from '@/components/smart/Header/Header'
 import Script from 'next/script';
 import Head from 'next/head'
+import Clarity from '@microsoft/clarity';
+
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,6 +35,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
+  Clarity.init(`svhx2ik86g`);
 
   const isShowHeader = !(typeof window !== 'undefined' && (window.location.pathname.startsWith('/sign-in') || window.location.pathname.startsWith('/sign-up')));
   return (
