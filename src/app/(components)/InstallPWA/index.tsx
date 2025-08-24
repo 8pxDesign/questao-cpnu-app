@@ -14,7 +14,7 @@ export function InstallPWAButton() {
     useEffect(() => {
         window.addEventListener("beforeinstallprompt", (e) => {
             e.preventDefault();
-            setDeferredPrompt(e);
+            setDeferredPrompt(e as BeforeInstallPromptEvent);
             setShowButton(true);
         });
     }, []);
