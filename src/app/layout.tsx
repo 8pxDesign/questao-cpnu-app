@@ -9,6 +9,8 @@ import Script from 'next/script';
 import Head from 'next/head'
 import Clarity from '@microsoft/clarity';
 
+import { ptBR } from '@clerk/localizations'
+
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -41,7 +43,7 @@ export default function RootLayout({
 
   const isShowHeader = !(typeof window !== 'undefined' && (window.location.pathname.startsWith('/sign-in') || window.location.pathname.startsWith('/sign-up')));
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={ptBR}>
       <html lang="en">
         <Head>
           <title>Questões CPNU</title>

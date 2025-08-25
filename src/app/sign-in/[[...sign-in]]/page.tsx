@@ -7,7 +7,7 @@ export default function LoginPage() {
     <div className="flex h-screen">
       <div className="hidden md:block flex-1 bg-cover bg-center" style={{ backgroundImage: 'url(/images/cover.png)' }} />
       <div className="flex-1 flex items-center justify-center">
-        <SignIn appearance={
+        <SignIn  appearance={
           {elements:{
             headerTitle: 'Entrrar na sua conta',
             footerActionText: 'Não tem uma conta? Cadastre-se',

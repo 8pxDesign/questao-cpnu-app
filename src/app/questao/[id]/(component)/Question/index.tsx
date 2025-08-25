@@ -46,15 +46,31 @@ export const Question = ({ question }: QuestionProps) => {
         <>
             <Drawer>
                 <div className="flex gap-[24px] flex-col  sm:pb-[80px] pb-[160px]">
-                    <p className="text-foreground text-sm leading-normal">{question.statement}</p>
+                    <div
+                        className="text-foreground text-sm leading-normal"
+                        style={{
+                            lineHeight: "1.6",
+                        }}
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                <style>
+                                    .question-content p { margin-bottom: 0.75em; }
+                                    .question-content ul { margin-left: 1.5em; margin-bottom: 0.75em; }
+                                    .question-content li { margin-bottom: 0.5em; }
+                                </style>
+                                <div class="question-content">${question.statement}</div>
+                            `,
+                        }}
+                    />
 
                     <div className="flex flex-col gap-[8px]">
                         {question.alternatives.map((alternative, index) => (
                             <Card key={index} onClick={() => choiceAlternative(alternative)} className={"mb-2" + (alternativeSelected?.id === alternative.id ? alternativeSelected.correctAnswer ? classCorrect : classWrong : "bg-white")}>
                                 <CardContent>
-                                    <CardTitle className="flex items-center justify-between text-[12px] leading-[16px]">
-                                        {alternative.description}
-                                    </CardTitle>
+                                    <CardTitle
+                                        className="flex items-center justify-between text-[12px] leading-[16px]"
+                                        dangerouslySetInnerHTML={{ __html: alternative.description }}
+                                    />
                                 </CardContent>
                             </Card>
                         ))}
