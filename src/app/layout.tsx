@@ -40,8 +40,6 @@ export default function RootLayout({
 }>) {
 
   Clarity.init(`svhx2ik86g`);
-
-  const isShowHeader = !(typeof window !== 'undefined' && (window.location.pathname.startsWith('/sign-in') || window.location.pathname.startsWith('/sign-up')));
   return (
     <ClerkProvider localization={ptBR}>
       <html lang="en">
@@ -57,7 +55,6 @@ export default function RootLayout({
           <meta name="theme-color" content="#ffffff" />
         </Head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          {isShowHeader && <Header />}
           {children}
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=G-KC1CFFB8FS`}

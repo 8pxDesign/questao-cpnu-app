@@ -12,13 +12,14 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { QuestionByBlock } from "./(components)/QuestionByBlock";
 
 
-export default async function BlocoPage({ params }: BlocoPageProps) {   
+export default async function BlocoPage({ params }: BlocoPageProps) {
     const resolvedParams = await params;
     const { id } = resolvedParams;
 
     const bloco = await fetchPublicServer<Block>(`blocks/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
+
 
     const topics = await fetchPublicServer<Topic[]>(`topic/by-block/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
@@ -27,7 +28,7 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
     return <>
         <div className="border-b-1">
             <div className="flex justify-between flex-col items-start p-4 gap-1 max-w-[1280px] mx-auto">
-                <h1 className="text-muted-foreground text-sm font-bold font-['Rawline'] leading-tight">Bloco {bloco.number}</h1>
+                <h1 className="text-muted-foreground text-sm font-bold font-['Rawline'] leading-tight">Bloco {bloco.id}</h1>
                 <h2 className="text-base-muted-foreground text-xs font-normal font-['Rawline'] leading-none capitalize">{bloco.name}</h2>
             </div>
         </div>

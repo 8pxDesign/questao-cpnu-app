@@ -1,0 +1,43 @@
+<svg width="327" height="160" viewBox="0 0 327 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_46_16056)">
+        <rect width="327" height="160" fill="#E0E7FF" />
+        <g clip-path="url(#clip1_46_16056)">
+            <rect x="112.61" y="16" width="101.78" height="244" rx="6.5139" fill="white" />
+            <path
+                d="M112.61 22.5139C112.61 18.9164 115.527 16 119.124 16H207.876C211.474 16 214.39 18.9164 214.39 22.5139V33.3704H112.61V22.5139Z"
+                fill="#E5E5E5" />
+            <rect x="119.124" y="39.8843" width="88.752" height="17.3704" rx="2.1713" fill="#E5E5E5" />
+            <rect x="119.669" y="94.8874" width="87.9795" height="16.3429" rx="1.63429"
+                stroke="#E5E5E5" stroke-width="1.08953" />
+            <rect x="124.405" y="98.8223" width="8.4416" height="8.4416" rx="1.68832" fill="#E5E5E5" />
+            <rect x="119.669" y="114.596" width="87.9795" height="16.3429" rx="1.63429"
+                stroke="#E5E5E5" stroke-width="1.08953" />
+            <rect x="124.405" y="118.531" width="8.4416" height="8.4416" rx="1.68832" fill="#E5E5E5" />
+            <rect x="119.669" y="134.305" width="87.9795" height="16.3429" rx="1.63429"
+                stroke="#E5E5E5" stroke-width="1.08953" />
+            <rect x="124.405" y="138.24" width="8.4416" height="8.4416" rx="1.68832" fill="#E5E5E5" />
+            <rect x="119.124" y="63.7686" width="83.5951" height="4.3426" rx="1.08565"
+                fill="#6366F1" />
+            <rect x="119.124" y="70.2825" width="87.3949" height="4.3426" rx="1.08565"
+                fill="#6366F1" />
+            <rect x="119.124" y="76.7964" width="79.2525" height="4.3426" rx="1.08565"
+                fill="#6366F1" />
+            <rect x="119.124" y="83.3104" width="72.7386" height="4.3426" rx="1.08565"
+                fill="#6366F1" />
+            <g opacity="0.48">
+                <path
+                    d="M121.295 26.8565L119.124 24.6852M119.124 24.6852L121.295 22.5139M119.124 24.6852H123.467"
+                    stroke="#737373" stroke-width="1.08565" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </g>
+        </g>
+    </g>
+    <defs>
+        <clipPath id="clip0_46_16056">
+            <rect width="327" height="160" fill="white" />
+        </clipPath>
+        <clipPath id="clip1_46_16056">
+            <rect x="112.61" y="16" width="101.78" height="244" rx="6.5139" fill="white" />
+        </clipPath>
+    </defs>
+</svg>
