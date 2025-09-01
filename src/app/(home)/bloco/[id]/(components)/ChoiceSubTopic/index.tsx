@@ -6,15 +6,20 @@ import { Card, CardAction, CardContent, CardTitle } from "@/components/ui/card";
 import { ChoiceTopicProps } from "./index.type";
 
 import React from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { usePrivateFetch } from "@/lib/fetchPrivateClient";
+import { Question } from "@/types/Question";
+import { Ads } from "@/types/Ads";
+import { usePaymentModal } from "@/app/(components)/PaymentModal/index.hook";
 
 export const ChoiceSubTopics = ({ topics }: ChoiceTopicProps) => {
     const [search, setSearch] = React.useState("");
 
     const { push } = useRouter();
     const fetchPrivate = usePrivateFetch();
-    
+    const searchParams = useSearchParams();
+    const tipoQuestao = searchParams.get('tipoQuestao');
+
 
     function normalizeText(text: string) {
         return text
@@ -24,12 +29,12 @@ export const ChoiceSubTopics = ({ topics }: ChoiceTopicProps) => {
     }
 
     const handleDrawQuestions = async (topicId: number) => {
-        const response = await fetchPrivate<{ id: number }>(`question/draw/topic/${topicId}`, {
+        const response = await fetchPrivate<{ question: Question, ads?: Ads }>(`question/draw/subtopic/${topicId}?questionType=${tipoQuestao}`, {
             method: 'GET',
             next: { revalidate: 60 * 60 * 24 * 30 }
         });
 
-        push(`/questao/${response.id}?choiceType=subtopic`);
+        push(`/questao/${response.question.id}?choiceType=subtopic&tipoQuestao=${tipoQuestao}`);
 
     }
 

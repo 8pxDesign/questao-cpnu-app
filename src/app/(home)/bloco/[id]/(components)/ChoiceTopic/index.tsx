@@ -7,14 +7,17 @@ import { ChoiceTopicProps } from "./index.type";
 import React, { useState } from "react";
 import { usePrivateFetch } from "@/lib/fetchPrivateClient";
 import { Question } from "@/types/Question";
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { Ads } from "@/types/Ads";
 
 
 export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
     const [search, setSearch] = React.useState("");
     const fetchPrivate = usePrivateFetch();
-    const {push} = useRouter();
+    const { push } = useRouter();
     const [isLoadingTopicId, setIsLoadingTopicId] = useState<number>(0);
+    const searchParams  = useSearchParams();
+    const tipoQuestao = searchParams.get('tipoQuestao');
 
     function normalizeText(text: string) {
         return text
@@ -33,12 +36,12 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
 
     const handleDrawQuestions = async (topicId: number) => {
         setIsLoadingTopicId(topicId)
-        const response = await fetchPrivate<Question>(`question/draw/topic/${topicId}`, {
+        const response = await fetchPrivate<{question:Question, ads?: Ads}>(`question/draw/topic/${topicId}?questionType=${tipoQuestao}`, {
             method: 'GET',
             next: { revalidate: 60 * 60 * 24 * 30 }
         });
 
-        push(`/questao/${response.id}?choiceType=topic`);
+        push(`/questao/${response.question.id}?choiceType=topic&tipoQuestao=${tipoQuestao}`);
         setIsLoadingTopicId(0);
 
     }
@@ -61,12 +64,28 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-            {filteredTopics.map((topic) => {
+            {/* <Card className="bg-white cursor-pointer">
+                <CardContent>
+                    <CardTitle className="flex items-center justify-between">
+                        <div className="flex flex-col gap-[2px]">
+                            <h2 className="text-primary text-xs font-normal leading-none">Eixo Base</h2>
+                            <h3 className="flex items-center justify-between text-[12px] leading-[16px]">Conhecimentos gerais</h3>
+                        </div>
+                        <CardAction className="flex items-center h-[30px]">
+                            <ChevronRight />
+                        </CardAction>
+                    </CardTitle>
+                </CardContent>
+            </Card> */}
+            {filteredTopics.map((topic, index: number) => {
                 return <Card key={topic.id} onClick={() => handleDrawQuestions(topic.id)} className="bg-white cursor-pointer">
                     <CardContent>
                         <CardTitle className="flex items-center justify-between">
-                            <h3 className="flex items-center justify-between text-[12px] leading-[16px]">{topic.name}</h3>
-                            <CardAction>
+                            <div className="flex flex-col gap-[2px]">
+                                <h2 className="text-primary text-xs font-normal leading-none">Eixo {index + 1}</h2>
+                                <h3 className="flex items-center justify-between text-[12px] leading-[16px]">{topic.name}</h3>
+                            </div>
+                            <CardAction className="flex items-center h-[30px]">
                                 {isLoadingTopicId === topic.id ? <LoaderCircle className="animate-spin" /> : <ChevronRight />}
                             </CardAction>
                         </CardTitle>

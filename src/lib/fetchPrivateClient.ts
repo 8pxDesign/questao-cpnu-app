@@ -1,33 +1,38 @@
 "use client";
 
+import { usePaymentModal } from "@/app/(components)/PaymentModal/index.hook";
 import { useAuth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 
 export function usePrivateFetch() {
   const { getToken, isLoaded, isSignedIn } = useAuth();
+  const { openModal } = usePaymentModal();
 
   return async function fetchPrivateClient<T>(
     url: string,
     options: RequestInit = {}
   ): Promise<T> {
-    if (!isLoaded || !isSignedIn) {
-      redirect("/sigin-in");
-    }
 
     const token = await getToken({ template: "questoes_cpnu" });
-    if (!token) throw new Error("Token not available");
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      ...(typeof options.headers === "object" && options.headers !== null
+        ? options.headers as Record<string, string>
+        : {}),
+    };
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
       ...options,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        ...(options.headers || {}),
-      },
+      headers,
       cache: "no-store",
     });
 
     if (!res.ok) {
+      if(res.status === 402){
+          openModal();
+      }
       const text = await res.text().catch(() => "");
       throw new Error(`HTTP ${res.status} - ${text}`);
     }

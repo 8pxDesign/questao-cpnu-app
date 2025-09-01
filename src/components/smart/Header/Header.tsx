@@ -9,10 +9,10 @@ export const Header = () => {
             <div className="flex items-center gap-4">
                 <SignedOut>
                     <SignInButton >
-                        <Button variant={'secondary'} size={'lg'} >Entrar</Button>
+                        <Button variant={'secondary'} size={'sm'} >Entrar</Button>
                     </SignInButton>
                     <SignUpButton>
-                        <Button variant={'default'} size={'lg'}>Cadastre-se</Button>
+                        <Button variant={'default'} size={'sm'}>Cadastrar</Button>
                     </SignUpButton>
                 </SignedOut>
                 <SignedIn>

@@ -1,55 +1,41 @@
-export const dynamic = "force-dynamic";
-
 import { BlocoPageProps } from "./page.type";
-
 import { Block } from "@/types/Block";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { ChoiceTopics } from "./(components)/ChoiceTopic";
 import { Topic } from "@/types/Topic";
 import { ChoiceSubTopics } from "./(components)/ChoiceSubTopic";
 import { fetchPublicServer } from "@/lib/fetchPublic";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { QuestionByBlock } from "./(components)/QuestionByBlock";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChoiceHeader } from "./(components)/ChioiceHeader";
+import { TabsListsTopics } from "./(components)/TabsListsTopics";
 
 
 export default async function BlocoPage({ params }: BlocoPageProps) {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-
     const bloco = await fetchPublicServer<Block>(`blocks/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
 
-
     const topics = await fetchPublicServer<Topic[]>(`topic/by-block/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
-
-    return <>
-        <div className="border-b-1">
-            <div className="flex justify-between flex-col items-start p-4 gap-1 max-w-[1280px] mx-auto">
-                <h1 className="text-muted-foreground text-sm font-bold font-['Rawline'] leading-tight">Bloco {bloco.id}</h1>
-                <h2 className="text-base-muted-foreground text-xs font-normal font-['Rawline'] leading-none capitalize">{bloco.name}</h2>
-            </div>
-        </div>
-        <div className="flex max-w-[800px] flex-col mx-auto mt-[48px] gap-[24px] px-[16px]">
+    return <main className="py-[24px] max-w-[800px] mx-auto px-[16px] flex flex-col gap-[16px]">
+        <Link href={`/escolha-tipo/${bloco.id}`} className="flex items-center gap-[8px]">
+            <Button variant={'ghost'} >
+                <ArrowLeft />
+                Voltar
+            </Button>
+        </Link>
+        <ChoiceHeader bloco={bloco} />
+        <div className="flex flex-col mx-auto  gap-[24px] w-full">
             <QuestionByBlock bloco={bloco} />
-            <div className="flex flex-col">
-                <h2 className="text-foreground text-2xl font-bold">Escolha o tema ou eixo</h2>
-                <h3 className="text-muted-foreground text-sm font-medium">Qual tema você deseja testar seus conhecimentos?</h3>
-            </div>
             <Tabs className="w-full flex flex-col items-center" defaultValue="eixos">
-                <TabsList className="w-full justify-center">
-                    <TabsTrigger value={'eixos'}>Eixos</TabsTrigger>
-                    <Tooltip >
-                        <TooltipTrigger className="flex-1">
-                            <TabsTrigger value={'temas'} disabled={true}> Temas (Em Breve)</TabsTrigger>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Em Breve</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TabsList>
+               <TabsListsTopics />
                 <TabsContent value="eixos" className="w-full mt-[1rem]">
                     <ChoiceTopics topics={topics} />
                 </TabsContent>
@@ -58,5 +44,5 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
                 </TabsContent>
             </Tabs>
         </div>
-    </>
+    </main>
 }
