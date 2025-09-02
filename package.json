@@ -13,7 +13,7 @@
     "@clerk/nextjs": "^6.30.0",
     "@lottiefiles/dotlottie-react": "^0.14.4",
     "@microsoft/clarity": "^1.0.0",
-    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
@@ -29,6 +29,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@ebay/nice-modal-react": "^1.2.13",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/next-pwa": "^5.6.9",

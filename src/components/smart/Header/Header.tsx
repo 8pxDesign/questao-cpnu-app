@@ -1,20 +1,24 @@
 import { Button } from "@/components/ui/button"
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
 import { CountQuestion } from "../CountQuestion/CountQuestion"
+import Link from "next/link"
 
 export const Header = () => {
-
     return <header className="w-full bg-sidebar-background items-center sticky top-0 z-10">
-        <div className="flex justify-between items-center p-4 gap-4 max-w-[1280px] mx-auto">
-            <img src="/images/logo.svg" alt="Simula CPNU" width={120} />
-            <div className="flex items-center gap-4">
+        <div className="flex justify-end items-center p-4 gap-4 max-w-[1280px] mx-auto">
+            <div className="flex items-center gap-4 justify-between w-full">
+                <Link href="/">
+                    <img src="/images/logo/concurso-app-icon.svg" alt="Logo" width={40} height={40} />
+                </Link>
                 <SignedOut>
-                    <SignInButton >
-                        <Button variant={'ghost'} size={'lg'} >Logar</Button>
-                    </SignInButton>
-                    <SignUpButton>
-                        <Button variant={'outline'} size={'lg'}>Cadastre-se</Button>
-                    </SignUpButton>
+                    <div className="flex gap-[16px]">
+                        <SignInButton >
+                            <Button variant={'secondary'} size={'sm'} >Entrar</Button>
+                        </SignInButton>
+                        <SignUpButton>
+                            <Button variant={'default'} size={'sm'}>Cadastrar</Button>
+                        </SignUpButton>
+                    </div>
                 </SignedOut>
                 <SignedIn>
                     <div className="flex items-center gap-4">

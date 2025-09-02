@@ -1,5 +1,8 @@
 'use client'
 
+import { usePrivateFetch } from "@/lib/fetchPrivateClient";
+import { useEffect, useState } from "react";
+
 export const CountQuestion = () => {
     // const fetchPrivateClient = usePrivateFetch();
     // const [count, setCount] = useState(0);
@@ -36,7 +39,7 @@ export const CountQuestion = () => {
     // }, [fetchPrivateClient])
 
     // return <div className="px-2 rounded outline-1 outline-offset-[-1px] outline-border ">
-    //     <div className="justify-start text-muted-foreground text-xs font-normal leading-none">Questões diárias: {count}/3</div>
+    //     <div className="py-[8px] justify-start text-muted-foreground text-xs font-normal leading-none">Questões diárias gratuitas: {count}/10</div>
     // </div>
     return <></>
 }
