@@ -24,9 +24,10 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
     const topics = await fetchPublicServer<Topic[]>(`topic/by-block/${id}`, {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
+    
     return <>
     <div className="w-full flex justify-center mt-[24px]">
-            <div className="w-[800px] overflow-hidden rounded-lg shadow-[0px_1px_3px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-accent">
+            <div className="w-[800px] overflow-hidden rounded-lg shadow-[0px_1px_3px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-accent max-w-[90%]">
                 <div className="flex items-center bg-sky-100 px-[16px] pt-[8px]">
                     <div className="flex flex-col items-start flex-1">
                         <p className="text-blue-600 md:text-2xl text-xl font-black uppercase leading-normal">Desafio Simula PRO  <span className="text-green-400">2025</span></p>
