@@ -11,6 +11,7 @@ interface DesafioPageProps {
     }>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type
 export interface AlternativeQuestionChallenge extends Pick<Alternative, 'id' | 'description' | 'position' | 'correctAnswer'> {}
 export interface QuestionChallenge extends Pick<Question, 'statement' | 'comment'> {
     alternatives: Array<AlternativeQuestionChallenge>;
