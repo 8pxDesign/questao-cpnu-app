@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@cl
 import { CountQuestion } from "../CountQuestion/CountQuestion"
 import Link from "next/link"
 import { useAuthModal } from "@/app/(components)/AuthModal/index.hook"
+import { MenuBar } from "../MenuBar/MenuBar"
 
 export const Header = () => {
     const { openModal } = useAuthModal();
@@ -18,6 +19,7 @@ export const Header = () => {
                 <Link href="/">
                     <img src="/images/logo/concurso-app-icon.svg" alt="Logo" width={40} height={40} />
                 </Link>
+                <MenuBar className="bg-sidebar-background border-none hidden md:flex" classNameButton="bg-sidebar-background" />
                 <SignedOut>
                     <div className="flex gap-[16px]">
                         <Button variant={'secondary'} size={'sm'} onClick={signIn}>Entrar</Button>
