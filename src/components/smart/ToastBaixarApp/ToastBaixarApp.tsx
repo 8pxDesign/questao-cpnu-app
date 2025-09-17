@@ -1,17 +1,41 @@
-"use client"
+'use client'
+
 import { Button } from "@/components/ui/button"
-import { Card, CardAction, CardContent, CardDescription} from "@/components/ui/card"
+import { Card, CardAction, CardContent, CardDescription } from "@/components/ui/card"
 import { X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { isIOS } from 'react-device-detect';
+import { openTutorialDownloadApp } from "./TutorialDownloadModal/TutorialDownloadModal"
+
+const LOCAL_STORAGE_KEY = "toastClosedAt"
 
 export const ToastBaixarApp = () => {
+  const [open, setOpen] = useState(false)
 
-  const [open, setOpen] = useState(true)
-  if (!open) return null
+  useEffect(() => {
+    const closedAt = localStorage.getItem(LOCAL_STORAGE_KEY)
+    const now = new Date().getTime()
+
+    if (!closedAt || now - parseInt(closedAt) > 86400000) {
+      setOpen(true)
+    }
+  }, [])
+
+  const handleClose = () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, Date.now().toString())
+    setOpen(false)
+  }
+
+  if (!open || !isIOS) return null
+
   return (
-    <Card className="flex items-center flex-row p-4 gap-2 w-[375px]">
+    <Card className="fixed top-4 left-1/2 -translate-x-1/2 flex items-center flex-row p-4 gap-2 w-[375px] z-50">
       <CardContent className="flex gap-3 px-0 items-center">
-        <Button variant="outline" className="border-none shadow-none !p-0" onClick={() => setOpen(false)}>
+        <Button
+          variant="outline"
+          className="border-none shadow-none !p-0"
+          onClick={handleClose}
+        >
           <X />
         </Button>
         <img src="/images/android.png" alt="Logo" width={32} height={32} />
@@ -19,7 +43,7 @@ export const ToastBaixarApp = () => {
           Obtenha acesso rápido ao nosso aplicativo — instale-o agora no seu dispositivo.
         </CardDescription>
         <CardAction className="flex items-center justify-center self-center">
-          <Button>
+          <Button onClick={openTutorialDownloadApp}>
             Instalar
           </Button>
         </CardAction>

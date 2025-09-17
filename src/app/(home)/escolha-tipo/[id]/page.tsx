@@ -1,5 +1,3 @@
-import { MenuBar } from "@/components/smart/MenuBar/MenuBar";
-import { ToastBaixarApp } from "@/components/smart/ToastBaixarApp/ToastBaixarApp";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -44,7 +42,5 @@ export default async function Page({ params }: EscolhaTipoProps) {
                 </Card>
             </Link>
         </div>
-        <MenuBar className="md:hidden" />
-        <ToastBaixarApp />
     </main>
 }

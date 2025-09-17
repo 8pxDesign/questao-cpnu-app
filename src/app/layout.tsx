@@ -4,7 +4,6 @@ import {
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { Header } from '@/components/smart/Header/Header'
 import Script from 'next/script';
 import Head from 'next/head'
 import Clarity from '@microsoft/clarity';
@@ -15,6 +14,8 @@ import { AuthModal } from './(components)/AuthModal'
 import { PaymentModalProvider } from './(components)/PaymentModal/index.hook'
 import { PaymentModal } from './(components)/PaymentModal'
 import { NiceModalProvider } from './(components)/NiceModal/NiceModal'
+import { MenuBar } from '@/components/smart/MenuBar/MenuBar'
+import { ToastBaixarApp } from '@/components/smart/ToastBaixarApp/ToastBaixarApp'
 
 
 const geistSans = Geist({
@@ -65,6 +66,7 @@ export default function RootLayout({
               <meta name="theme-color" content="#ffffff" />
             </Head>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+              <ToastBaixarApp />
               {children}
               <Script
                 src={`https://www.googletagmanager.com/gtag/js?id=G-KC1CFFB8FS`}
@@ -87,6 +89,7 @@ export default function RootLayout({
                 })(window, document, "clarity", "script", "svhx2ik86g");
               `}
               </Script>
+              <MenuBar  className='md:hidden'/>
             </body>
           </html>
         </PaymentModalProvider>

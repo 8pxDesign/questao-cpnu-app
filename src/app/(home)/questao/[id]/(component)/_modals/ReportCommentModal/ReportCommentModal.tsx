@@ -4,11 +4,11 @@ import { CredenzaFooter } from "@/components/ui/credenza";
 import NiceModal from "@ebay/nice-modal-react";
 
 
-const ComplaintModal = NiceModal.create(() => {
+const ReportCommentModal = NiceModal.create(() => {
     return (
-        <ResponsiveModal title="Solicitar recurso da questão" size="md">
+        <ResponsiveModal title="Reportar comentário" size="md">
             <div className=" gap-4 flex flex-col">
-                <p className="text-sm font-normal text-card-foreground">Encontrou algo errado ou discorda da resposta final? Nos explique o motivo para nos ajudar a corrigir ou melhorar nossas questões!</p>
+                <p className="text-sm font-normal text-card-foreground">Algo de errado com este comentário? Nos explique o motivo!</p>
 
                 <textarea className="w-full h-[100px] p-2 border border-border rounded-md text-sm" placeholder="Explique o motivo"></textarea>
                     <Button variant="default" className="self-end w-30">Enviar</Button>
@@ -20,15 +20,15 @@ const ComplaintModal = NiceModal.create(() => {
     )
 });
 
-NiceModal.register("ComplaintModal", ComplaintModal);
+NiceModal.register("ReportCommentModal", ReportCommentModal);
 
-const openComplaintModal = () =>
-  NiceModal.show("ComplaintModal");
-const closeComplaintModal = () =>
-  void NiceModal.hide("ComplaintModal");
+const openReportCommentModal = () =>
+  NiceModal.show("ReportCommentModal");
+const closeReportCommentModal = () =>
+  void NiceModal.hide("ReportCommentModal");
 
 export {
-  ComplaintModal,
-  openComplaintModal,
-  closeComplaintModal,
+  ReportCommentModal,
+  openReportCommentModal,
+  closeReportCommentModal,
 };

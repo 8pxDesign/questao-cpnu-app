@@ -15,6 +15,35 @@ import { Question as QuestionType } from "@/types/Question";
 import { Ads } from "@/types/Ads";
 import { AdsModal } from "../_modals/AdsModal";
 import { openComplaintModal } from "../_modals/ComplaintModal/ComplaintModal";
+import { CommunityComment } from "../CommunityComment/CommunityComment";
+
+const users = [
+  {
+    userName: "Maria",
+    commentText: "Gostei bastante!",
+    commentDate: "08/09/2025",
+  },
+  {
+    userName: "João",
+    commentText: "Muito bom!",
+    commentDate: "16/09/2025",
+  },
+  {
+    userName: "Luisa",
+    commentText: "Caramba! Essa questão me pegou de surpresa... Eu realmente achava que a “policy feedback",
+    commentDate: "16/09/2025",
+  },
+  {
+    userName: "Gabriel",
+    commentText: "Muito bom!",
+    commentDate: "16/09/2025",
+  },
+  {
+    userName: "Jordanio",
+    commentText: "Eu Gostei mas acho que meu Lider vai errar",
+    commentDate: "16/09/2025",
+  },
+];
 
 export const Question = ({ question }: QuestionProps) => {
     const fetchPrivateClient = usePrivateFetch();
@@ -102,7 +131,6 @@ export const Question = ({ question }: QuestionProps) => {
 
     }
 
-
     const { isLoaded, isSignedIn } = useAuth();
     const { openModal } = useAuthModal();
 
@@ -134,16 +162,25 @@ export const Question = ({ question }: QuestionProps) => {
                     />
 
                     <div className="flex flex-col gap-[8px]">
-                        {question.alternatives.map((alternative, index) => (
-                            <Card key={index} onClick={() => choiceAlternative(alternative)} className={"mb-2" + cssClassAlternative(alternative)}>
+                        {question.alternatives.map((alternative, index) => {
+                            const letter = String.fromCharCode(65 + index);
+
+                            return (
+                            <Card
+                                key={alternative.id}
+                                onClick={() => choiceAlternative(alternative)}
+                                className={"mb-2" + cssClassAlternative(alternative)}
+                            >
                                 <CardContent>
-                                    <CardTitle
-                                        className="flex items-center justify-between text-[12px] leading-[16px]"
-                                        dangerouslySetInnerHTML={{ __html: alternative.description }}
-                                    />
+                                <CardTitle className="flex items-center gap-2 text-[12px] leading-[16px]">
+                                     <Button variant={'ghost'} className="bg-sidebar-accent text-xs text-muted-foreground rounded-md font-extrabold">{letter}</Button>
+
+                                    <span dangerouslySetInnerHTML={{ __html: alternative.description }} />
+                                </CardTitle>
                                 </CardContent>
                             </Card>
-                        ))}
+                            );
+                        })}
                     </div>
                     <footer className="fixed w-full py-[20px] flex items-center justify-center bottom-[0px] left-0 z-3 bg-white border-t border-border ">
                         <div className="px-[16px] flex flex-col gap-2 sm:flex-row sm:justify-end sm:max-w-[800px] w-full">
@@ -158,20 +195,21 @@ export const Question = ({ question }: QuestionProps) => {
                                         Incorreta
                                     </Button>}
                                 </>}
-                                <DrawerTrigger disabled={!alternativeWasConfirmed}>
-                                    <Button
-                                        variant={'ghost'}
-                                        className={(!alternativeWasConfirmed ? "text-gray-500 cursor-not-allowed" : "text-primary")}
-                                        disabled={!alternativeWasConfirmed}
-                                    >
-                                        <BookCheck />
-                                        Ver justificativa
-                                    </Button>
-                                </DrawerTrigger>
+                                
                                 <Button variant={'ghost'} className="text-muted-foreground" onClick={openComplaintModal} >
                                     <Flag />
                                 </Button>
                             </div>
+                            <DrawerTrigger disabled={!alternativeWasConfirmed}>
+                                <Button
+                                    variant={'ghost'}
+                                    className={(!alternativeWasConfirmed ? "text-gray-500 cursor-not-allowed" : "text-primary")}
+                                    disabled={!alternativeWasConfirmed}
+                                >
+                                    <BookCheck />
+                                    justificativa e comentários
+                                </Button>
+                            </DrawerTrigger>
                             <Button
                                 // className={"min-w-[120px] w-full sm:w-auto" + (alternativeWasSelected ? " bg-gray-200 text-gray-500 cursor-not-allowed" : (alternativeSelected.correctAnswer ? " bg-emerald-500" : " bg-red-600"))}
                                 className={"min-w-[120px] w-full sm:w-auto " + cssClassCTA()}
@@ -189,6 +227,10 @@ export const Question = ({ question }: QuestionProps) => {
                     <DrawerHeader className="p-[32px]">
                         <DrawerTitle className="max-w-[800px] text-left mx-auto">Justificativa</DrawerTitle>
                         <DrawerDescription className="max-w-[800px] text-left mx-auto" dangerouslySetInnerHTML={{ __html: question.comment! }}></DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerHeader className="p-[32px] pt-0">
+                        <DrawerTitle className="max-w-[800px] text-left mx-auto">Comentários da comunidade <span className=" text-muted-foreground font-light">( 1 )</span></DrawerTitle>
+                        <CommunityComment users={users} />
                     </DrawerHeader>
                 </DrawerContent>
             </Drawer>
