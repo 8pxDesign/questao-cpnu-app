@@ -13,13 +13,9 @@ export const CommunityComment = ({
         <div key={index} className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
             <Avatar>
-              {user.userAvatarUrl ? (
-                <AvatarImage src={user.userAvatarUrl} />
-              ) : (
-                <AvatarFallback>
-                  {user.userName?.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              )}
+              <AvatarFallback>
+                {user.userName?.charAt(0).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <div className="flex justify-between w-full">
               <div className="flex flex-col">

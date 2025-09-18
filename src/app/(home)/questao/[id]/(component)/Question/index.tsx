@@ -16,6 +16,7 @@ import { Ads } from "@/types/Ads";
 import { AdsModal } from "../_modals/AdsModal";
 import { openComplaintModal } from "../_modals/ComplaintModal/ComplaintModal";
 import { CommunityComment } from "../CommunityComment/CommunityComment";
+import { Badge } from "@/components/ui/badge";
 
 const users = [
   {
@@ -173,7 +174,11 @@ export const Question = ({ question }: QuestionProps) => {
                             >
                                 <CardContent>
                                 <CardTitle className="flex items-center gap-2 text-[12px] leading-[16px]">
-                                     <Button variant={'ghost'} className="bg-sidebar-accent text-xs text-muted-foreground rounded-md font-extrabold">{letter}</Button>
+                                    <Badge variant="secondary" className="bg-sidebar-accent rounded-md">
+                                        <p className="text-xs text-muted-foreground font-extrabold">
+                                            {letter}
+                                        </p>
+                                    </Badge>
 
                                     <span dangerouslySetInnerHTML={{ __html: alternative.description }} />
                                 </CardTitle>

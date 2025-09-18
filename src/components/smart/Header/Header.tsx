@@ -19,7 +19,7 @@ export const Header = () => {
                 <Link href="/">
                     <img src="/images/logo/concurso-app-icon.svg" alt="Logo" width={40} height={40} />
                 </Link>
-                <MenuBar className="bg-sidebar-background border-none hidden md:flex" classNameButton="bg-sidebar-background" />
+                <MenuBar className="bg-sidebar-background border-none hidden md:flex" />
                 <SignedOut>
                     <div className="flex gap-[16px]">
                         <Button variant={'secondary'} size={'sm'} onClick={signIn}>Entrar</Button>

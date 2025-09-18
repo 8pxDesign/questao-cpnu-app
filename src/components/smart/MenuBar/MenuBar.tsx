@@ -32,7 +32,7 @@ export const MenuBar = ({className}:MenuBarProps) => {
       />
       <MenuItem 
         label="Flashcards"
-        url="#"
+        url="#" 
         hasShortly
       />
       <MenuItem 
