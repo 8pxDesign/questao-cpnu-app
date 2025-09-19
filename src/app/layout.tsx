@@ -67,7 +67,7 @@ export default function RootLayout({
               <meta name="theme-color" content="#ffffff" />
             </Head>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased pb-18`}>
-              <ThemeProvider defaultTheme="system" storageKey="app-theme">
+              {/* <ThemeProvider defaultTheme="system" storageKey="app-theme"> */}
               <ToastBaixarApp />
               {children}
               <Script
@@ -92,7 +92,7 @@ export default function RootLayout({
               `}
               </Script>
               <MenuBar className='md:hidden fixed bottom-0 left-0 right-0'/>
-              </ThemeProvider>
+              {/* </ThemeProvider> */}
             </body>
           </html>
         </PaymentModalProvider>
