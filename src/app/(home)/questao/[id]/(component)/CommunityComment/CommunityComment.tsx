@@ -9,7 +9,7 @@ export const CommunityComment = ({
   users
 }: CommunityCommentProps) => {
   return (
-    <div className="flex flex-col gap-4 mt-4 max-h-[250px] overflow-y-auto">
+    <div className="flex flex-col gap-4 mt-4 max-h-[250px] overflow-y-auto mb-[32px]">
       {users.map((user,index) => (
         <div key={index} className="flex flex-col gap-4 pb-4">
           <div className="flex items-center gap-2">
