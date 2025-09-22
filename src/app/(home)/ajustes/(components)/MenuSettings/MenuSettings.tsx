@@ -5,21 +5,18 @@ import { FileText, Phone, Wallet } from "lucide-react"
 import { SubscriptionModal } from "../SubscriptionModal/SubscriptionModal"
 import Image from "next/image"
 import { MenuSettingsItem } from "./MenuSettingsItem/MenuSettingsItem"
-import NiceModal from "@ebay/nice-modal-react" 
-import { ChooseModeDarkLight } from "@/components/smart/ChooseModeDarkLight/ChooseModeDarkLight"
+import NiceModal from "@ebay/nice-modal-react"
 import { UserInfo } from "@/components/smart/UserInfo/UserInfo"
-import { openToastBaixarAppItem } from "@/components/smart/ToastBaixarApp/ToastBaixarAppItem/ToastBaixarAppItem"
-import { isIOS } from "react-device-detect"
-import { InstallPWAButton } from "@/app/(components)/InstallPWA"
 import { useCountQuestion } from "@/components/smart/CountQuestion/CountQuestionContext"
 import { CountQuestionBadge } from "@/components/smart/CountQuestionBadge/CountQuestionBadge"
+import { openToastDownloadAppIOS } from "@/components/smart/ToastDownloadApp/ToatDownloadAppIOS/ToastDownloadAppIOS"
+import { isIOS, isWindows, deviceType, isMacOs } from 'react-device-detect';
+import { useEffect, useState } from "react"
+import { BeforeInstallPromptEvent } from "@/components/smart/ToastDownloadApp/ToastDownloadApp"
+import { User } from "@/types/User"
+import { usePrivateFetch } from "@/lib/fetchPrivateClient"
 
-const items = [ 
-  {
-    icon: <Wallet size={16} />,
-    description: "Minha assinatura",
-    action: () => NiceModal.show(SubscriptionModal),
-  },
+const items = [
   {
     icon: <Phone size={16} />,
     description: "Suporte",
@@ -33,25 +30,76 @@ const items = [
 ]
 
 export const MenuSettings = () => {
-  const { count } = useCountQuestion();
+  const [icon, setIcon] = useState("/images/icons/playstore.png");
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showButton, setShowButton] = useState(true);
+  const [user, setUser] = useState<User | undefined>(undefined);
+  const fetchPrivate = usePrivateFetch();
+  const [menuItems, setMenuItems] = useState([...items]);
+
+
+  const loadUser = async () => {
+    if (typeof window !== "undefined") {
+      const userData = await fetchPrivate<User>(`users/me`);
+      if (userData?.planValidUntil) {
+        setMenuItems(prev => [...prev, {
+          icon: <Wallet size={16} />,
+          description: "Minha assinatura",
+          action: () => NiceModal.show(SubscriptionModal),
+        }]);
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setShowButton(true);
+    });
+
+    loadUser()
+
+    if (isIOS || isMacOs) {
+      setIcon("/images/icons/apple.svg");
+    } else if (isWindows) {
+      setIcon("/images/icons/windows.svg");
+    } else {
+      setIcon("/images/icons/playstore.png");
+    }
+  }, []);
+
+  const handleInstallClick = async () => {
+
+    if (isIOS) {
+      openToastDownloadAppIOS();
+      return;
+    }
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      setShowButton(false);
+      setDeferredPrompt(null);
+    }
+  };
+
   return (
     <div className="flex-col gap-4 flex w-full md:w-[500px]">
       <CountQuestionBadge className="mt-[10px]" />
       <UserInfo />
 
       <div className="px-2 w-full gap-0 justify-start border rounded-lg">
-         {/* <ChooseModeDarkLight /> */}
-        {items.map((item, idx) => (
+        {/* <ChooseModeDarkLight /> */}
+        {menuItems.map((item, idx) => (
           <MenuSettingsItem key={idx} items={item} />
         ))}
       </div>
 
-      <Button variant="outline" className="justify-start p-4" onClick={openToastBaixarAppItem}>
-        <Image src="/images/apple.svg" alt="logo" width={16} height={16} />
-        Instalar Aplicativo
-      </Button>
+      {showButton && <Button variant="outline" className="justify-start flex-1 p-4" onClick={handleInstallClick}>
+        <Image src={icon} alt="logo" width={16} height={16} />
+        <span className="ml-2">Instalar Aplicativo</span>
+      </Button>}
     </div>
   )
 }
-
 

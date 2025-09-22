@@ -6,13 +6,13 @@ import { SquarePlus } from "lucide-react";
 import Image from "next/image";
 
 
-const ToastBaixarAppItem = NiceModal.create(() => {
+const ToastDownloadAppIOS = NiceModal.create(() => {
     return (
         <ResponsiveModal title="Instalar o aplicativo" size="md">
             <div className=" gap-4 flex flex-col mt-4">
                 <Card className="bg-accent p-4">
                     <div className="flex gap-4">
-                        <Image src="/images/android.png" alt="Logo" width={48} height={48}/>
+                        <Image src="/images/logo/concurso-app-icon.svg" alt="Logo" width={48} height={48}/>
                         <div className="flex flex-col gap-1">
                             <span className="text-primary text-sm font-extrabold">Concurso.app</span>
                             <span className="text-muted-foreground text-xs font-normal">Concurso.app</span>
@@ -41,8 +41,8 @@ const ToastBaixarAppItem = NiceModal.create(() => {
                         <li className="text-sm text-card-foreground font-normal">
                             <div className="flex items-center gap-1">
                                 <p>Procure pelo ícone</p>
-                                <Image src="/images/android.png" alt="Logo" width={20} height={20} />
-                                <p>menu do navegador.</p>
+                                <Image src="/images/logo/concurso-app-icon.svg" alt="Logo" width={20} height={20} />
+                                <p>menu do seu celular.</p>
                             </div>
                         </li>
                     </ol>
@@ -52,13 +52,13 @@ const ToastBaixarAppItem = NiceModal.create(() => {
     )
 });
 
-NiceModal.register("ToastBaixarAppItem", ToastBaixarAppItem);
+NiceModal.register("ToastDownloadAppIOS", ToastDownloadAppIOS);
 
-const openToastBaixarAppItem = () => openModal("ToastBaixarAppItem", {});
-const closeToastBaixarAppItem = () => closeModal("ToastBaixarAppItem");
+const openToastDownloadAppIOS = () => openModal("ToastDownloadAppIOS", {});
+const closeToastDownloadAppIOS = () => closeModal("ToastDownloadAppIOS");
 
 export {
-  ToastBaixarAppItem,
-  openToastBaixarAppItem,
-  closeToastBaixarAppItem,
+  ToastDownloadAppIOS,
+  openToastDownloadAppIOS,
+  closeToastDownloadAppIOS,
 };

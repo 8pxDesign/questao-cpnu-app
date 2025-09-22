@@ -10,9 +10,9 @@ export const MenuItem = ({className, icon, label, url, hasShortly}: MenuItemProp
             {hasShortly ? (
                 <div className="flex flex-col gap-2 md:flex-row">
                     <Badge className="bg-sidebar-accent rounded-2xl h-4 px-3 py-1 text-muted-foreground">
-                        <p className="font-medium text-[8px] text-muted-foreground">Em Breve</p>
+                        <p className="font-medium text-[8px] text-muted-foreground ">Em Breve</p>
                     </Badge>
-                    <p className="text-muted-foreground text-xs font-medium">{label}</p>
+                    <p className="text-muted-foreground text-xs font-medium text-center w-full">{label}</p>
                 </div>
             ):(
                 <p className="text-foreground text-xs font-medium">{label}</p>

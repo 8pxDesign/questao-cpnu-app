@@ -16,35 +16,6 @@ import { Ads } from "@/types/Ads";
 import { AdsModal } from "../_modals/AdsModal";
 import { openComplaintModal } from "../_modals/ComplaintModal/ComplaintModal";
 import { CommunityComment } from "../CommunityComment/CommunityComment";
-import { Badge } from "@/components/ui/badge";
-
-const users = [
-    {
-        userName: "Maria",
-        commentText: "Gostei bastante!",
-        commentDate: "08/09/2025",
-    },
-    {
-        userName: "João",
-        commentText: "Muito bom!",
-        commentDate: "16/09/2025",
-    },
-    {
-        userName: "Luisa",
-        commentText: "Caramba! Essa questão me pegou de surpresa... Eu realmente achava que a “policy feedback",
-        commentDate: "16/09/2025",
-    },
-    {
-        userName: "Gabriel",
-        commentText: "Muito bom!",
-        commentDate: "16/09/2025",
-    },
-    {
-        userName: "Jordanio",
-        commentText: "Eu Gostei mas acho que meu Lider vai errar",
-        commentDate: "16/09/2025",
-    },
-];
 
 export const Question = ({ question }: QuestionProps) => {
     const fetchPrivateClient = usePrivateFetch();
@@ -65,7 +36,6 @@ export const Question = ({ question }: QuestionProps) => {
 
     const cssClassCTA = () => {
         if (isLoading || !alternativeWasSelected) return "bg-gray-200 text-gray-500 cursor-not-allowed";
-
         if (alternativeSelected && !alternativeWasConfirmed) return "bg-[#E0E7FF] text-primary";
 
         return "";
@@ -246,17 +216,16 @@ export const Question = ({ question }: QuestionProps) => {
                     </footer>
                 </div>
                 <DrawerContent>
-                    <DrawerHeader className="p-[32px]">
-                        <DrawerTitle className="max-w-[800px] text-left mx-auto">Justificativa</DrawerTitle>
-                        <DrawerDescription className="max-w-[800px] text-left mx-auto" dangerouslySetInnerHTML={{ __html: question.comment! }}></DrawerDescription>
+                    <DrawerHeader className="max-w-[800px] mx-auto">
+                        <DrawerTitle className="text-left">Justificativa</DrawerTitle>
+                        <DrawerDescription className="text-left mx-auto max-h-[200px] overflow-auto" dangerouslySetInnerHTML={{ __html: question.comment! }}></DrawerDescription>
                     </DrawerHeader>
-                    <DrawerHeader className="p-[32px] pt-0">
-                        <DrawerTitle className="max-w-[800px] text-left mx-auto">Comentários da comunidade <span className=" text-muted-foreground font-light">( 1 )</span></DrawerTitle>
-                        <CommunityComment users={users} />
+                    <DrawerHeader className="max-w-[800px] w-full  mx-auto">
+                        <DrawerTitle className="text-left">Comentários da comunidade <span className=" text-muted-foreground font-light">( {question.questionComments?.length ?? 0} )</span></DrawerTitle>
+                        <CommunityComment comments={question.questionComments} />
                     </DrawerHeader>
                 </DrawerContent>
             </Drawer>
-
             {ads && newQuestion && <AdsModal question={newQuestion} ads={ads} />}
         </>)
 }

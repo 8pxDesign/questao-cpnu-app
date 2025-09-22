@@ -21,9 +21,10 @@ export const MenuBar = ({ className }: MenuBarProps) => {
   return (
     <div className={`bg-background flex gap-2 items-center justify-center border-t-1 px-6 py-2 ${className}`}>
       <MenuItem
-        icon={<LayoutDashboard className="h-4 w-4 text-foreground" />}
+        // icon={<LayoutDashboard className="h-4 w-4 text-foreground" />}
         label="Painel"
-        url="/dashboard"
+        url="#"
+        hasShortly
       />
       <MenuItem
         icon={<ListTodo className="h-4 w-4 text-foreground" />}

@@ -15,9 +15,11 @@ import { PaymentModalProvider } from './(components)/PaymentModal/index.hook'
 import { PaymentModal } from './(components)/PaymentModal'
 import { NiceModalProvider } from './(components)/NiceModal/NiceModal'
 import { MenuBar } from '@/components/smart/MenuBar/MenuBar'
-import { ToastBaixarApp } from '@/components/smart/ToastBaixarApp/ToastBaixarApp'
+
 import { ThemeProvider } from '@/components/providers/theme.provider';
 import { CountQuestionProvider } from '@/components/smart/CountQuestion/CountQuestionProvider';
+import { ToastDownloadApp } from '@/components/smart/ToastDownloadApp/ToastDownloadApp';
+
 
 
 const geistSans = Geist({
@@ -69,7 +71,7 @@ export default function RootLayout({
                 </Head>
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased pb-18`}>
 
-                  <ToastBaixarApp />
+                  <ToastDownloadApp />
                   {children}
                   <Script
                     src={`https://www.googletagmanager.com/gtag/js?id=G-KC1CFFB8FS`}

@@ -1,7 +1,9 @@
+import { User } from "@/types/User";
 import { createContext, useContext, useState, useCallback } from "react";
 
 interface CountQuestionContextType {
   count: number;
+  user?: User;
   updateCount: () => Promise<void>;
 }
     

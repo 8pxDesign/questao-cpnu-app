@@ -1,10 +1,5 @@
-export interface CommunityCommentProps {
-    users: CommunityCommentUserProps[];
-}
+import { QuestionComment } from "@/types/QuestionComment";
 
-interface CommunityCommentUserProps {
-    userName: string;
-    userAvatarUrl?: string;
-    commentDate?: string;
-    commentText?: string;
+export interface CommunityCommentProps {
+    comments: QuestionComment[];
 }

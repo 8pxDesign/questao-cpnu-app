@@ -8,7 +8,7 @@ import { openModal, closeModal } from "@/lib/modal-helpers";
 
 
 const SubscriptionModal = NiceModal.create(() => {
-
+  
   const openAssinatura = () => {
     window.open("https://consumer.hotmart.com/main", "_blank", "noopener,noreferrer");
   };
@@ -19,7 +19,7 @@ const SubscriptionModal = NiceModal.create(() => {
         <Card className="bg-muted p-4 gap-4">
           <div className="flex flex-col gap-2">
             <span className="text-primary text-sm font-extrabold">Concurso.app</span>
-            <Button variant="secondary" className="bg-background self-start" size="sm">Expira em 22/08/2026</Button>
+            <Button variant="secondary" className="bg-background self-start" size="sm">Expira em 05/10/2025</Button>
           </div>
         </Card>
           

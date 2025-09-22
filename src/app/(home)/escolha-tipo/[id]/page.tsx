@@ -1,6 +1,7 @@
 import { CountQuestionBadge } from "@/components/smart/CountQuestionBadge/CountQuestionBadge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { SignedIn } from "@clerk/nextjs";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +27,9 @@ export default async function Page({ params }: EscolhaTipoProps) {
                     <div className="px-[24px] flex flex-col gap-[6px] items-start">
                         <h2 className="self-stretch justify-start text-muted-foreground text-sm font-extrabold">Questões de prova</h2>
                         <h3 className="self-stretch justify-start text-muted-foreground text-sm font-normal">Questões no formato da banca FGV</h3>
-                        <CountQuestionBadge className="mt-[10px]" />
+                        <SignedIn>
+                            <CountQuestionBadge className="mt-[10px]" />
+                        </SignedIn>
                     </div>
                 </Card>
             </Link>
@@ -38,7 +41,9 @@ export default async function Page({ params }: EscolhaTipoProps) {
                     <div className="px-[24px] flex flex-col gap-[6px] items-start">
                         <h2 className="self-stretch justify-start text-muted-foreground text-sm font-extrabold">Exercícios rápidos</h2>
                         <h3 className="self-stretch justify-start text-muted-foreground text-sm font-normal">Perguntas rápidas para testar conhecimentos</h3>
-                        <Button className="mt-[10px] text-muted-foreground font-medium text-xs" variant={'secondary'} size={'sm'}>Ilimitado</Button>
+                        <SignedIn>
+                            <Button className="mt-[10px] text-muted-foreground font-medium text-xs" variant={'secondary'} size={'sm'}>Ilimitado</Button>
+                        </SignedIn>
                     </div>
                 </Card>
             </Link>

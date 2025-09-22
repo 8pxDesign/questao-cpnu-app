@@ -1,9 +1,6 @@
 import { fetchPrivateServer } from "@/lib/fetchPrivateServer";
 import { Question as QuestionComponent } from "./(component)/Question";
 import { Question } from "@/types/Question";
-import { ArrowLeft, X } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { QuestaoHeader } from "./(component)/QuestionHeader/QuestionHeader";
 
 interface QuestaoPageProps {

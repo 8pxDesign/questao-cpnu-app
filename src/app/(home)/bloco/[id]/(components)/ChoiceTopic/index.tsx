@@ -16,7 +16,7 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
     const fetchPrivate = usePrivateFetch();
     const { push } = useRouter();
     const [isLoadingTopicId, setIsLoadingTopicId] = useState<number>(0);
-    const searchParams  = useSearchParams();
+    const searchParams = useSearchParams();
     const tipoQuestao = searchParams.get('tipoQuestao');
 
     function normalizeText(text: string) {
@@ -35,15 +35,21 @@ export const ChoiceTopics = ({ topics }: ChoiceTopicProps) => {
 
 
     const handleDrawQuestions = async (topicId: number) => {
-        setIsLoadingTopicId(topicId)
-        const response = await fetchPrivate<{question:Question, ads?: Ads}>(`question/draw/topic/${topicId}?questionType=${tipoQuestao}`, {
-            method: 'GET',
-            next: { revalidate: 60 * 60 * 24 * 30 }
-        });
 
-        push(`/questao/${response.question.id}?choiceType=topic&tipoQuestao=${tipoQuestao}`);
-        setIsLoadingTopicId(0);
+        try {
 
+            setIsLoadingTopicId(topicId)
+            const response = await fetchPrivate<{ question: Question, ads?: Ads }>(`question/draw/topic/${topicId}?questionType=${tipoQuestao}`, {
+                method: 'GET',
+                next: { revalidate: 60 * 60 * 24 * 30 }
+            });
+
+            push(`/questao/${response.question.id}?choiceType=topic&tipoQuestao=${tipoQuestao}`);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoadingTopicId(0);
+        }
     }
 
     return <div className="flex flex-col gap-[1rem] w-full">
