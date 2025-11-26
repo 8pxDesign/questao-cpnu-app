@@ -32,7 +32,7 @@ export default async function Page({ params }: DesafioPageProps) {
     const questoes = questionData?.questions || [];
 
     return <>
-        <div className="w-full h-[140px] bg-sky-50 flex justify-center">
+        {/* <div className="w-full h-[140px] bg-sky-50 flex justify-center">
             <div className="max-w-[600px] px-[16px] ">
                 <div className="flex items-center h-[140px]">
                     <div className="flex flex-col items-start flex-1">
@@ -42,7 +42,7 @@ export default async function Page({ params }: DesafioPageProps) {
                     <img src="/images/challenge.svg" alt="Desafio Simula PRO" />
                 </div>
             </div>
-        </div>
+        </div> */}
         <QuestionChallenge bloco={questionData.bloco} questions={questoes} />
     </>
 }

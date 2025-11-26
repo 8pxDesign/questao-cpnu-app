@@ -14,20 +14,20 @@ export default async function Home() {
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <img src="/images/logo-badge.svg" alt="Simula CPNU" className="w-[160px]" />
           <div className="flex flex-col justify-center">
-            <h1 className="text-primary text-xl font-extrabold leading-7">Teste seu conhecimento para o CNPU com questões inéditas</h1>
-            <p className="text-muted-foreground text-sm font-medium font-['Rawline'] leading-tight">Responda questões específicas dos temas e eixos do seu bloco do CPNU e pratique seu conhecimento diariamente com questões inéditas de acordo com a <b>banca FVG</b></p>
+            <h1 className="text-primary text-xl font-extrabold leading-7">Teste seu conhecimento para o IBGE 2026 com questões inéditas</h1>
+            <p className="text-muted-foreground text-sm font-medium font-['Rawline'] leading-tight">Responda questões específicas dos temas do seu cargo para a prova do IBGE e pratique seu conhecimento diariamente com questões inéditas de acordo com a <b>banca FVG</b></p>
           </div>
         </div>
       </div>
       <div className="w-full overflow-x-auto">
-        <div className="flex flex-col md:grid-cols-3 md:grid gap-3 pb-10">
+        <div className="flex flex-col md:grid-cols-2 md:grid gap-3 pb-10">
           {blocks.data.map((block, index) => (
             <Link href={`/escolha-tipo/${block.id}`} className="w-full" key={block.id}>
               <Card className="w-full  p-[16px]">
                 <CardContent className="gap-[12px] flex px-0">
                   <img src={`images/icons/${block.id}.svg`} alt="" width={40} />
                   <div className="flex flex-col">
-                    <p className="text-primary text-sm font-extrabold leading-tight">Bloco {block.number}</p>
+                    <p className="text-primary text-sm font-extrabold leading-tight">{block.description}</p>
                     <p className="text-muted-foreground text-xs font-normal !normal-case leading-none">{block.name.charAt(0).toUpperCase() + block.name.slice(1).toLowerCase()}</p>
                   </div>
                 </CardContent>
