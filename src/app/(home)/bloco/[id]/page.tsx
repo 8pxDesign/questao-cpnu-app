@@ -24,6 +24,7 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
 
+    
     return <>
         <main className="py-[24px] max-w-[800px] mx-auto px-[16px] flex flex-col gap-[16px]">
             <Link href={`/escolha-tipo/${bloco.id}`} className="flex items-center gap-[8px]">
