@@ -34,7 +34,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Concurso.app',
-  description: 'Prepare-se para o sucesso no seu próximo exame com Questões CPNU.',
+  description: 'Prepare-se para o sucesso no seu próximo exame com Questões IBGE.',
   icons: {
     icon: '/favicon.png',
     apple: '/apple-icon-180x180.png',
@@ -59,7 +59,7 @@ export default function RootLayout({
             <CountQuestionProvider>
               <html lang="en">
                 <Head>
-                  <title>Questões CPNU</title>
+                  <title>Questões IBGE</title>
                   <base href="/" />
                   <meta content="width=device-width, initial-scale=1" name="viewport" />
 

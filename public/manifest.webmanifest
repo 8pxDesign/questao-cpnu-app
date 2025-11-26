@@ -1,6 +1,6 @@
 {
-    "name": "Questões CPNU",
-    "short_name": "Questões CPNU",
+    "name": "Questões IBGE",
+    "short_name": "Questões IBGE",
     "start_url": "/?source=a2hs",
     "scope": "/",
     "display_override": ["fullscreen", "standalone", "minimal-ui"],

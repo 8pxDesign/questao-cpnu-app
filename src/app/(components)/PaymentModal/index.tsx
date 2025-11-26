@@ -13,8 +13,8 @@ export const PaymentModal = () => {
     return (
         <Dialog open={isOpen} onOpenChange={open => { if (!open) closeModal(); }}>
             <DialogContent>
-            <DialogTitle className="text-foreground text-xl font-bold leading-7">Responda questões ilimitadas de temas específicos do CPNU</DialogTitle>
-            <p className="text-foreground text-sm font-normal">Torne-se PRO para ter acesso a questões de temas específicos do CPNU à sua escolha!</p>
+            <DialogTitle className="text-foreground text-xl font-bold leading-7">Responda questões ilimitadas de temas específicos do IBGE</DialogTitle>
+            <p className="text-foreground text-sm font-normal">Torne-se PRO para ter acesso a questões de temas específicos do IBGE à sua escolha!</p>
             <div className="mt-[32px] flex flex-col px-4 pt-6 pb-4 relative rounded-2xl outline outline-offset-[-1px] outline-border justify-start items-start gap-4">
                 <span className="px-3 py-1.5 mt-[-32px] mx-auto z-1 bg-orange-500 rounded-2xl items-center text-center justify-start text-orange-50 text-[10px] font-bold uppercase leading-[10px]">Preço por tempo limitado!</span>
                 <span className="w-full text-center text-foreground text-sm font-bold leading-none">Assinatura com questões ilimitadas até a prova (05/10/2025)</span>

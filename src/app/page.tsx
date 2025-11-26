@@ -10,9 +10,9 @@ export default async function Home() {
   return (
     <div className="flex max-w-[800px] flex-col mx-auto mt-[48px] gap-[24px] px-[16px]">
       <div className="w-full flex gap-[2rem] items-center flex-col">
-        <img src="/images/logo.svg" alt="Simula CPNU" className="mb-[40px]" />
+        <img src="/images/logo.svg" alt="Simula IBGE" className="mb-[40px]" />
         <div className="flex flex-col sm:flex-row items-center gap-6">
-          <img src="/images/logo-badge.svg" alt="Simula CPNU" className="w-[160px]" />
+          <img src="/images/logo-badge.svg" alt="Simula IBGE" className="w-[160px]" />
           <div className="flex flex-col justify-center">
             <h1 className="text-primary text-xl font-extrabold leading-7">Teste seu conhecimento para o IBGE 2026 com questões inéditas</h1>
             <p className="text-muted-foreground text-sm font-medium font-['Rawline'] leading-tight">Responda questões específicas dos temas do seu cargo para a prova do IBGE e pratique seu conhecimento diariamente com questões inéditas de acordo com a <b>banca FVG</b></p>
