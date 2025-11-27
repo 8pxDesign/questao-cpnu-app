@@ -94,12 +94,6 @@ export default function RootLayout({
                       })(window, document, "clarity", "script", "svhx2ik86g");
                     `}
                 </Script>
-                 <Script
-                  async
-                  src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2812302657099069`}
-                  strategy="lazyOnload"
-                  crossOrigin="anonymous"
-                />
                 <MenuBar className="md:hidden fixed bottom-0 left-0 right-0" />
               </body>
             </html>
