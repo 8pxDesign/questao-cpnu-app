@@ -114,7 +114,7 @@ export const QuestionChallenge = ({ questions, bloco }: QuestionChallengeProps) 
                         </ul>
                     </div>
                     <div className="flex flex-col p-[1rem]">
-                        <p className="justify-start text-muted-foreground text-xs font-normal leading-none">Bloco {bloco.id} - {bloco.name}</p>
+                        <p className="justify-start text-muted-foreground text-xs font-normal leading-none">Cargo {bloco.name}</p>
                         <p className="justify-center text-muted-foreground text-xs font-bold leading-3">{questionActual.topic.name}</p>
                     </div>
                 </div>
@@ -209,7 +209,7 @@ export const QuestionChallenge = ({ questions, bloco }: QuestionChallengeProps) 
                     <p>Você finalizou o teste e já mandou bem acertando {questionHistory.filter(q => q === 'correct').length} de 5 questões. E tem mais: por completar o teste, você desbloqueou um desconto exclusivo só pra você!</p>
                     <div className="mt-[32px] w-full flex flex-col px-4 pt-6 pb-4 relative rounded-2xl outline outline-offset-[-1px] outline-border justify-start items-start gap-4">
                         <span className="px-3 py-1.5 mt-[-32px] mx-auto z-1 bg-orange-500 rounded-2xl items-center text-center justify-start text-orange-50 text-[10px] font-bold uppercase leading-[10px]">50% de desconto por tempo limitado!</span>
-                        <span className="w-full text-center text-foreground text-sm font-bold leading-none">10 simulados do Bloco {bloco.id}</span>
+                        <span className="w-full text-center text-foreground text-sm font-bold leading-none">10 simulados do Cargo {bloco.name}</span>
                         <div className="p-6 w-full bg-sidebar-accent rounded-lg flex flex-col justify-center items-center gap-2">
                             <span className="line-through text-foreground text-sm font-normal leading-none">R$ 94,85 <span className="line-through text-muted-foreground text-sm font-normal  leading-none">/Mês</span></span>
                             <span className="text-emerald-500 font-bold text-3xl leading-9">R$ 47,49 <span className="text-muted-foreground text-xl font-normal leading-tight">/Mês*</span></span>

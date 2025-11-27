@@ -16,7 +16,7 @@ export const ChoiceHeader = ({ bloco }: ChoiceHeaderProps) => {
             <div className="w-full h-[160px] relative ">
                 <Image src={`/images/${tipoQuestao}.svg`} alt="Questão Prova" fill className="object-contain rounded-lg bg-[#DFE7FF]" />
             </div>
-            <h1 className="text-primary text-xl font-extrabold leading-7">{tipoQuestao === 'question' ? 'Questões de prova' : 'Exercícios rápidos'}<span className="text-muted-foreground font-normal"> Bloco {bloco.id}</span></h1>
+            <h1 className="text-primary text-xl font-extrabold leading-7">{tipoQuestao === 'question' ? 'Questões de prova' : 'Exercícios rápidos'}<span className="text-muted-foreground font-normal"> {bloco.description}</span></h1>
         </div>
     );
 };

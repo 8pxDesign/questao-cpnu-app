@@ -15,9 +15,6 @@ import { PaymentModalProvider } from './(components)/PaymentModal/index.hook'
 import { PaymentModal } from './(components)/PaymentModal'
 import { NiceModalProvider } from './(components)/NiceModal/NiceModal'
 import { MenuBar } from '@/components/smart/MenuBar/MenuBar'
-
-import { ThemeProvider } from '@/components/providers/theme.provider';
-import { CountQuestionProvider } from '@/components/smart/CountQuestion/CountQuestionProvider';
 import { ToastDownloadApp } from '@/components/smart/ToastDownloadApp/ToastDownloadApp';
 
 
@@ -56,7 +53,6 @@ export default function RootLayout({
           <NiceModalProvider>
             <PaymentModal />
             <AuthModal />
-            <CountQuestionProvider>
               <html lang="en">
                 <Head>
                   <title>Questões IBGE</title>
@@ -97,7 +93,6 @@ export default function RootLayout({
                   <MenuBar className='md:hidden fixed bottom-0 left-0 right-0' />
                 </body>
               </html>
-            </CountQuestionProvider>
           </NiceModalProvider>
         </PaymentModalProvider>
       </ModalProvider>

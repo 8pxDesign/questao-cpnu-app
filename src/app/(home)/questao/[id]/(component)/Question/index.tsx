@@ -27,6 +27,7 @@ export const Question = ({ question }: QuestionProps) => {
     const [newQuestion, setNewQuestion] = useState<QuestionType>();
     const alternativeWasSelected = useMemo(() => !!alternativeSelected, [alternativeSelected]);
     const tipoQuestao = searchParams.get('tipoQuestao') ?? 'question';
+    const blockId = searchParams.get('blockId') ?? 'question';
     const [ads, setAds] = useState<Ads>();
 
     const choiceAlternative = async (alternative: Alternative) => {
@@ -95,6 +96,8 @@ export const Question = ({ question }: QuestionProps) => {
 
     const continuarHandle = async () => {
         setIsLoading(true);
+
+        console.log({ alternativeWasConfirmed, alternativeSelected });
         if (!alternativeWasConfirmed && alternativeSelected)
             return sendAnswer();
 
@@ -103,15 +106,14 @@ export const Question = ({ question }: QuestionProps) => {
         const choiceType = typeof window !== "undefined"
             ? new URLSearchParams(window.location.search).get("choiceType") ?? 'block'
             : 'block';
-
-        const topicId = choiceType === 'block' ? question.topic.block.id : question.topicId;
+        const topicId = choiceType === 'block' ? blockId : choiceType === 'topic' ? question.topic.id : question.subtopic.id;
         const newQuestion = await fetchPrivateClient<{ question: QuestionType, ads?: Ads }>(`question/draw/${choiceType}/${topicId}?questionType=${tipoQuestao}`);
 
         if (newQuestion.ads) {
             setAds(newQuestion.ads);
             setNewQuestion(newQuestion.question);
         } else {
-            router.replace(`/questao/${newQuestion.question.id}?choiceType=${choiceType}&tipoQuestao=${tipoQuestao}`);
+            router.replace(`/questao/${newQuestion.question.id}?choiceType=${choiceType}&tipoQuestao=${tipoQuestao}&blockId=${blockId}`);
         }
 
     }
@@ -203,7 +205,6 @@ export const Question = ({ question }: QuestionProps) => {
                                 </Button>
                             </DrawerTrigger>
                             <Button
-                                // className={"min-w-[120px] w-full sm:w-auto" + (alternativeWasSelected ? " bg-gray-200 text-gray-500 cursor-not-allowed" : (alternativeSelected.correctAnswer ? " bg-emerald-500" : " bg-red-600"))}
                                 className={"min-w-[120px] w-full sm:w-auto " + cssClassCTA()}
                                 onClick={continuarHandle}
                                 disabled={!alternativeSelected || isLoading}

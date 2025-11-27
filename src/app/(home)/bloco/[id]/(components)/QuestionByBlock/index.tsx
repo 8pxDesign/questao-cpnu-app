@@ -22,7 +22,7 @@ export const QuestionByBlock = ({ bloco }: { bloco: Block }) => {
             method: 'GET'
         });
 
-        push(`/questao/${response.question.id}?choiceType=block&tipoQuestao=${tipoQuestao}`);
+        push(`/questao/${response.question.id}?choiceType=block&tipoQuestao=${tipoQuestao}&blockId=${bloco.id}`);
     }
 
     return (

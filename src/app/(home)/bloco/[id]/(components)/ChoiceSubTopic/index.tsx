@@ -10,9 +10,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { usePrivateFetch } from "@/lib/fetchPrivateClient";
 import { Question } from "@/types/Question";
 import { Ads } from "@/types/Ads";
-import { usePaymentModal } from "@/app/(components)/PaymentModal/index.hook";
 
-export const ChoiceSubTopics = ({ topics }: ChoiceTopicProps) => {
+export const ChoiceSubTopics = ({ topics, blockId }: ChoiceTopicProps) => {
     const [search, setSearch] = React.useState("");
 
     const { push } = useRouter();
@@ -37,7 +36,7 @@ export const ChoiceSubTopics = ({ topics }: ChoiceTopicProps) => {
                 next: { revalidate: 60 * 60 * 24 * 30 }
             });
 
-            push(`/questao/${response.question.id}?choiceType=subtopic&tipoQuestao=${tipoQuestao}`);
+            push(`/questao/${response.question.id}?choiceType=subtopic&tipoQuestao=${tipoQuestao}&blockId=${blockId}`);
         } catch (error) {
             console.error(error);
         } finally {

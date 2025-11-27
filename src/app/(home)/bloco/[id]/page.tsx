@@ -7,7 +7,7 @@ import { ChoiceSubTopics } from "./(components)/ChoiceSubTopic";
 import { fetchPublicServer } from "@/lib/fetchPublic";
 import { QuestionByBlock } from "./(components)/QuestionByBlock";
 import Link from "next/link";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ChoiceHeader } from "./(components)/ChioiceHeader";
 import { TabsListsTopics } from "./(components)/TabsListsTopics";
@@ -24,7 +24,7 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
         next: { revalidate: 60 * 60 * 24 * 30 }
     });
 
-    
+
     return <>
         <main className="py-[24px] max-w-[800px] mx-auto px-[16px] flex flex-col gap-[16px]">
             <Link href={`/escolha-tipo/${bloco.id}`} className="flex items-center gap-[8px]">
@@ -39,10 +39,10 @@ export default async function BlocoPage({ params }: BlocoPageProps) {
                 <Tabs className="w-full flex flex-col items-center" defaultValue="eixos">
                     <TabsListsTopics />
                     <TabsContent value="eixos" className="w-full mt-[1rem]">
-                        <ChoiceTopics topics={topics} />
+                        <ChoiceTopics blockId={id} topics={topics} />
                     </TabsContent>
                     <TabsContent value="temas" className="w-full mt-[1rem]">
-                        <ChoiceSubTopics topics={topics} />
+                        <ChoiceSubTopics topics={topics} blockId={id} />
                     </TabsContent>
                 </Tabs>
             </div>

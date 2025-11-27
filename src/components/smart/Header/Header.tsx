@@ -1,7 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button"
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
-import { CountQuestion } from "../CountQuestion/CountQuestion"
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 import { useAuthModal } from "@/app/(components)/AuthModal/index.hook"
 import { MenuBar } from "../MenuBar/MenuBar"
@@ -33,10 +32,7 @@ export const Header = () => {
                     </div>
                 </SignedOut>
                 <SignedIn>
-                    <div className="flex items-center gap-4">
-                        <CountQuestion />
-                        <UserButton />
-                    </div>
+                    <UserButton />
                 </SignedIn>
             </div>
         </div>
