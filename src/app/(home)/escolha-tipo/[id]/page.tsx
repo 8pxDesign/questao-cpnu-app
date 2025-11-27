@@ -1,9 +1,7 @@
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { fetchPublicServer } from "@/lib/fetchPublic";
 import { Block } from "@/types/Block";
-import { SignedIn } from "@clerk/nextjs";
 
 import Image from "next/image";
 import Link from "next/link";

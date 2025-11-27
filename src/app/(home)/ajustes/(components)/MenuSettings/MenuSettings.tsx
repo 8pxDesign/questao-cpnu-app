@@ -7,8 +7,6 @@ import Image from "next/image"
 import { MenuSettingsItem } from "./MenuSettingsItem/MenuSettingsItem"
 import NiceModal from "@ebay/nice-modal-react"
 import { UserInfo } from "@/components/smart/UserInfo/UserInfo"
-import { useCountQuestion } from "@/components/smart/CountQuestion/CountQuestionContext"
-import { CountQuestionBadge } from "@/components/smart/CountQuestionBadge/CountQuestionBadge"
 import { openToastDownloadAppIOS } from "@/components/smart/ToastDownloadApp/ToatDownloadAppIOS/ToastDownloadAppIOS"
 import { isIOS, isWindows, deviceType, isMacOs } from 'react-device-detect';
 import { useEffect, useState } from "react"
@@ -85,7 +83,6 @@ export const MenuSettings = () => {
 
   return (
     <div className="flex-col gap-4 flex w-full md:w-[500px]">
-      <CountQuestionBadge className="mt-[10px]" />
       <UserInfo />
 
       <div className="px-2 w-full gap-0 justify-start border rounded-lg">
