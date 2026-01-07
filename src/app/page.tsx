@@ -38,7 +38,6 @@ export default async function Home() {
             </Link>
           ))}
         </div>
-        <MgidWidget id="1928163" />
       </div>
     </div>
   );
