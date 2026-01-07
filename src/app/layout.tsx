@@ -53,6 +53,7 @@ export default function RootLayout({
             <html lang="en">
               <Head>
                 <title>Questões IBGE</title>
+                
                 <base href="/" />
                 <meta
                   content="width=device-width, initial-scale=1"
@@ -71,6 +72,7 @@ export default function RootLayout({
               <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased pb-18`}
               >
+                <Script src="https://jsc.mgid.com/site/1067238.js" async />
                 <ToastDownloadApp />
                 {children}
                 <Script

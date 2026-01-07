@@ -3,6 +3,9 @@ import { fetchPublicServer } from "@/lib/fetchPublic";
 import { Block } from "@/types/Block";
 import { PaginateResponse } from "@/types/Paginate";
 import Link from "next/link";
+import React from 'react'
+import { MgidWidget } from "./(components)/MgIdBanner";
+
 export default async function Home() {
 
   const blocks = await fetchPublicServer<PaginateResponse<Block>>('blocks');
@@ -35,6 +38,7 @@ export default async function Home() {
             </Link>
           ))}
         </div>
+        <MgidWidget id="1928163" />
       </div>
     </div>
   );
